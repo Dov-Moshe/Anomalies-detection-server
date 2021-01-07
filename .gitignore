@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+
+# Files
+.idea/
+CMakeLists.txt
+anomalyTest.csv
+anomalyTrain.csv
+cmake-build-debug/
+main.cpp
+output532.txt
+output541.txt
+output_menu532.txt
+output_menu541.txt
