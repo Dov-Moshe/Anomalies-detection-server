@@ -29,6 +29,7 @@ class ClientHandler{
 
 // you can add helper classes here and implement on the cpp file
 
+// this class is for reading from socket line by line
 class GetSocket {
 public:
     string get(int clientID) {
@@ -43,6 +44,7 @@ public:
     }
 };
 
+// IO for socket
 class SocketIO: public DefaultIO {
     int clientID;
     GetSocket get;
@@ -86,7 +88,9 @@ class AnomalyDetectionHandler:public ClientHandler{
 class Server {
 	thread* t; // the thread to run the start() method in
 	// you may add data members
+	// file descriptor of the server
     int fd;
+    // data of
     sockaddr_in server;
     sockaddr_in client;
 

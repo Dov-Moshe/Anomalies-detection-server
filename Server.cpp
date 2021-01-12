@@ -5,7 +5,7 @@ Server::Server(int port)throw (const char*) {
     fd = socket(AF_INET, SOCK_STREAM,0);
     if(fd < 0)
         throw "socket failed";
-
+    // filling the struct of the server
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY;
     server.sin_port = htons(port);
@@ -17,11 +17,11 @@ Server::Server(int port)throw (const char*) {
 }
 
 void Server::start(ClientHandler& ch)throw(const char*){
+
+    // get client in thread
     t = new thread([&ch, this]() {
         while (true) {
             socklen_t clientSize = sizeof(client);
-            int nawClient;
-
             /************* for timeout ************/
             fd_set selectFd;
             timeval timeout;
@@ -35,8 +35,8 @@ void Server::start(ClientHandler& ch)throw(const char*){
             if(select(32, &selectFd,0,0,&timeout) == 0)
                 break;
             /*************************************/
-
-            nawClient = accept(fd, (struct sockaddr*)&client, &clientSize);
+            // accept client
+            int nawClient = accept(fd, (struct sockaddr*)&client, &clientSize);
 
             if (nawClient < 0)
                 throw "accept failure";

@@ -42,8 +42,6 @@ public:
         return s;
     }
     virtual void write(string text) {
-        cout << text;
-        //out << text;
         if(text.compare("Please upload your local train CSV file.\n") == 0 ||
         text.compare("Please upload your local test CSV file.\n") == 0 ||
         text.compare("Please upload your local anomalies file.\n") == 0) {
@@ -197,8 +195,6 @@ public:
         }
         dio->write("Upload complete.\n");
         vector<float> result = findDifference(anomalies);
-        //dio->write("True Positive Rate: " + to_string(result[0]) + "\n");
-        //dio->write("False Positive Rate: " + to_string(result[1]) + "\n");
 
         float TP = result[0];
         float FP = result[1];
@@ -208,11 +204,6 @@ public:
         dio->write("False Positive Rate: ");
         dio->write(floor(FP*1000)/1000);
         dio->write("\n");
-
-        /*for(auto & anomalie : anomalies) {
-            cout << anomalie.first  << "\t"  << anomalie.second  <<  "\n";
-        }*/
-
     }
 
     void findStartEnd(vector<pair<float, float>>& anomalies, string line) {
